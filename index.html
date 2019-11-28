@@ -17,16 +17,18 @@
       -->
       <div class="header">
         <h1>{{ header.toLocaleUpperCase() }}</h1>
+        <!--v-if / v-else exibem ou escondem um campo a partir de uma condição -->
         <button type="button" class="btn btn-primary" v-if="state === 'default'" @click="changeState('edit')">Edit</button>
         <button type="button" class="btn btn-cancel" v-else @click="changeState('default')">Cancel</button>
       </div>
       <div v-if="state === 'edit'" class="add-item-form">
         <!--'v-on' pode ser substituido por '@' -->
         <input type="text" v-model="newItem" placeholder="Add an item" @keyup.enter="saveItem()">
+        <p>{{characterCount}}/200</p>
         <button type="button" class="btn btn-primary" v-bind:disabled="newItem.length === 0" v-on:click="saveItem()">Save Item</button>
       </div>
       <ul>
-        <li v-for="item in items" :class="[item.purchased ? 'strikeout' : '', item.highPriority ? 'priority' : '']" @click="togglePurchased(item)">{{ item.label }}</li>
+        <li v-for="item in reversedItems" :class="[item.purchased ? 'strikeout' : '', item.highPriority ? 'priority' : '']" @click="togglePurchased(item)">{{ item.label }}</li>
         <!--
           Operador ternário permite uma maior flexibilidade para alternar classes, mas também é possível:
           <li v-for="item in items" :class="{strikeout: item.purchased}">{{ item.label }}</li>
@@ -73,6 +75,14 @@
             }
           ]
         },
+        computed: {
+          characterCount(){
+            return this.newItem.length;
+          },
+          reversedItems(){
+            return this.items.slice(0).reverse();
+          }
+        },
         methods: {
           saveItem: function (){
             this.items.push(this.newItem);
@@ -86,6 +96,13 @@
             item.purchased = !item.purchased;
           }
         }
+        /*
+        * Dificuldade de Escolher entre computed ou methods?
+        * Quando for necessário Alterar Dados => methods
+        * Quando for necessário Alterar a Apresentação de dados Existentes => computed
+        * As boas práticas recomendam sempre que computed retorne algo
+        * Propriedades computed não devem alterar/transformar dados -> evita bugs
+        */
       });
     </script>
   </body>
