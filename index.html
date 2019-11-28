@@ -17,6 +17,9 @@
       -->
       <h1>{{ header.toLocaleUpperCase() }}</h1>
       <input type="text" v-model="header">
+      <ul>
+        <li v-for="item in items">{{ item }}</li>
+      </ul>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
@@ -26,11 +29,22 @@
     * > shoppingList.$data.header = "Hi, from Console";
     * <- "Hi, from Console"
     * e altera tanto o título <h1> quanto o value de <input/>
+    *
+    * > shoppingList.$data.items.push('1 Awesome Vue Course')
+    * <- 4
+    * > shoppingList.$data.items.pop()
+    * <- "1 Awesome Vue Course"
+    * são capaz de adiconar e remover uma string no fim da lista items
     */
       var shoppingList = new Vue({
         el: '#shopping-list',
         data: {
-          header: 'Vue is ready to party!'
+          header: 'Vue is ready to party!',
+          items: [
+            '10 party hats',
+            '2 board games',
+            '20 cups'
+          ]
         }
       });
     </script>
