@@ -7,7 +7,15 @@
   </head>
   <body>
     <div id="shopping-list">
-      <h1>{{ header }}</h1>
+      <!--
+      O vue permite que tanto dados como expressões sejam vinculadas à
+      um elemento html, as expressões no entanto,
+      limitam-se à apenas uma, logo:
+      <h1>{{ header.toLocaleUpperCase() }}</h1> É permitido
+      <h1>{{ header ? header : 'Vazio' }}</h1> É permitido
+      <h1>{{ if(header) {return header} }}</h1> Não é permitido
+      -->
+      <h1>{{ header.toLocaleUpperCase() }}</h1>
       <input type="text" v-model="header">
     </div>
     <script src="https://unpkg.com/vue"></script>
