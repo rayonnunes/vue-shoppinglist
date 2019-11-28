@@ -16,7 +16,11 @@
       <h1>{{ if(header) {return header} }}</h1> Não é permitido
       -->
       <h1>{{ header.toLocaleUpperCase() }}</h1>
-      <input type="text" v-model="header">
+      <div class="add-item-form">
+        <!--'v-on' pode ser substituido por '@' -->
+        <input type="text" v-model="newItem" placeholder="Add an item" @keyup.enter="saveItem()">
+        <button type="button" class="btn btn-primary" v-on:click="saveItem()">Save Item</button>
+      </div>
       <ul>
         <li v-for="item in items">{{ item }}</li>
       </ul>
@@ -40,11 +44,18 @@
         el: '#shopping-list',
         data: {
           header: 'Vue is ready to party!',
+          newItem: '',
           items: [
             '10 party hats',
             '2 board games',
             '20 cups'
           ]
+        },
+        methods: {
+          saveItem: function (){
+            this.items.push(this.newItem);
+            this.newItem = '';
+          }
         }
       });
     </script>
