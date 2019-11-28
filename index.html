@@ -3,9 +3,28 @@
   <head>
     <meta charset="utf-8">
     <title>Shopping List App</title>
+    <link rel="stylesheet" href="main.css">
   </head>
   <body>
-
+    <div id="shopping-list">
+      <h1>{{ header }}</h1>
+      <input type="text" v-model="header">
+    </div>
     <script src="https://unpkg.com/vue"></script>
+    <script>
+    /*
+    * Atribuir uma variável ao Objeto Vue Criado,
+    * facilita o debugging pelo console ou vuedevtools, por exemplo:
+    * > shoppingList.$data.header = "Hi, from Console";
+    * <- "Hi, from Console"
+    * e altera tanto o título <h1> quanto o value de <input/>
+    */
+      var shoppingList = new Vue({
+        el: '#shopping-list',
+        data: {
+          header: 'Vue is ready to party!'
+        }
+      });
+    </script>
   </body>
 </html>
