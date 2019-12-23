@@ -1,4 +1,4 @@
-# shoppinglist
+# shopping-list
 
 ## Project setup
 ```
