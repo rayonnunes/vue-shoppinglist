@@ -70,7 +70,9 @@ export default {
       return (this.inStock <= 10 && this.inStock > 0)
     },
     inStock () {
-      return this.variants[this.selectedVariant].quantity
+      //
+      const { quantity } = this.variants[this.selectedVariant]
+      return quantity
     }
   }
 
