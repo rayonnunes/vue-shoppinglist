@@ -6,7 +6,7 @@
       :class="{ disabledButton: inStock < 1}">
         Add to Cart
     </button>
-    <button type="button" v-if="cart.length > 0" v-on:click="removeFromCart" class="btn-danger">Remove From Cart</button>
+    <button type="button" v-if="cart.length > 0" @click="removeFromCart" class="btn-danger">Remove From Cart</button>
   </div>
 </template>
 
@@ -15,10 +15,12 @@ export default {
   props: ['cart', 'selectedVariant', 'inStock'],
   methods: {
     addToCart: function () {
-      this.$emit('add-to-cart')
+      const payload = this.selectedVariant
+      this.$store.commit('ADD_TO_CART', payload)
     },
     removeFromCart: function () {
-      this.$emit('remove-from-cart')
+      const payload = this.selectedVariant
+      this.$store.commit('REMOVE_FROM_CART', payload)
     }
   }
 }
