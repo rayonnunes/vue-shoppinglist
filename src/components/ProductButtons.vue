@@ -16,11 +16,11 @@ export default {
   methods: {
     addToCart: function () {
       const payload = this.selectedVariant
-      this.$store.commit('ADD_TO_CART', payload)
+      this.$store.commit ('ADD_TO_CART', payload)
     },
     removeFromCart: function () {
       const payload = this.selectedVariant
-      this.$store.commit('REMOVE_FROM_CART', payload)
+      this.$store.commit ('REMOVE_FROM_CART', payload)
     }
   }
 }

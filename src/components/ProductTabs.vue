@@ -19,7 +19,7 @@ export default {
   methods: {
     toggleTab: function (tab) {
       this.selectedTab = tab
-      this.$emit('change-tab', this.selectedTab)
+      this.$emit ('change-tab', this.selectedTab)
     }
   }
 }

@@ -75,16 +75,16 @@ export default {
           recommendation: this.recommendation,
           rating: this.rating
         }
-        this.$emit('post-review', productReview)
+        this.$emit ('post-review', productReview)
         this.name = null
         this.review = null
         this.rating = null
         this.recommendation = null
       } else {
-        if (!this.name) this.errors.push('Name Required.')
-        if (!this.review) this.errors.push('Review Required.')
-        if (!this.rating) this.errors.push('Rating Required.')
-        if (!this.recommendation) this.errors.push('Recommendation Required.')
+        if (!this.name) this.errors.push ('Name Required.')
+        if (!this.review) this.errors.push ('Review Required.')
+        if (!this.rating) this.errors.push ('Rating Required.')
+        if (!this.recommendation) this.errors.push ('Recommendation Required.')
       }
     },
     toggleTab: function (tabSelected) {

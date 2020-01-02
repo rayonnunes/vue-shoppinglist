@@ -23,6 +23,7 @@
 
 <script>
 import ProductButtons from '../components/ProductButtons.vue'
+import { mapState } from 'vuex'
 export default {
   components: {
     'product-buttons': ProductButtons
@@ -35,18 +36,35 @@ export default {
   methods: {
     updateProduct: function (value) {
       this.selectedVariant = value
-      this.$emit('change-image', this.product.variants[this.selectedVariant].image)
+      this.$emit ('change-image', this.product.variants[this.selectedVariant].image)
     }
   },
   computed: {
-    product () {
-      const { id, name, details, variants } = this.$store.state.product
-      return { id, name, details, variants }
-    },
-    cart () {
-      const cart = this.$store.state.cart
-      return cart
-    },
+    ...mapState ({
+      product: state => {
+        const { id, name, details, variants } = state.product
+        return { id, name, details, variants }
+      },
+      cart: state => {
+        const cart = state.cart
+        return cart
+      }
+    }),
+    /* Método Helper utilizando vuex e plugin-proposal-object-rest-spread do babel
+    *
+    *  Spread operator (...) permite o uso do mapstate juntamente com outras
+    *  computed properties
+    *
+    */
+    // Modo sem os Métodos Helpers
+    // product () {
+    //   const { id, name, details, variants } = this.$store.state.product
+    //   return { id, name, details, variants }
+    // },
+    // cart () {
+    //   const cart = this.$store.state.cart
+    //   return cart
+    // },
     almostSoldOut () {
       return (this.inStock <= 10 && this.inStock > 0)
     },

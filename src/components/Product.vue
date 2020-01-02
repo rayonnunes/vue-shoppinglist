@@ -27,7 +27,7 @@ export default {
       this.image = newImage
     },
     addReview: function (productReview) {
-      this.reviews.push(productReview)
+      this.reviews.push (productReview)
     }
   }
 }
